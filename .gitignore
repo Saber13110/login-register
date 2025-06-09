@@ -29,3 +29,14 @@ Thumbs.db
 *.tmp
 /tmp/
 
+# Test coverage
+coverage/
+
+# Build artifacts
+build/
+
+# Temporary editor files
+*.swp
+*.swo
+
+
