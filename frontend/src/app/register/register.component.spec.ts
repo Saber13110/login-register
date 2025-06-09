@@ -1,15 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { of } from 'rxjs';
 import { RegisterComponent } from './register.component';
+import { AuthService } from '../auth.service';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
+  let authServiceSpy: jasmine.SpyObj<AuthService>;
 
   beforeEach(() => {
+    authServiceSpy = jasmine.createSpyObj('AuthService', ['register']);
+    authServiceSpy.register.and.returnValue(of({}));
+
     TestBed.configureTestingModule({
       declarations: [RegisterComponent],
-      imports: [FormsModule]
+      imports: [FormsModule],
+      providers: [{ provide: AuthService, useValue: authServiceSpy }]
     });
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
@@ -53,12 +60,14 @@ describe('RegisterComponent', () => {
     component.formData.acceptTerms = false;
     component.handleStep2();
     expect(window.alert).toHaveBeenCalled();
+    expect(authServiceSpy.register).not.toHaveBeenCalled();
   });
 
   it('should reset after successful registration', () => {
     component.step = 2;
     component.formData.acceptTerms = true;
     component.handleStep2();
+    expect(authServiceSpy.register).toHaveBeenCalled();
     expect(component.step).toBe(1);
   });
 });
