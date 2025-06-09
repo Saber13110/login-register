@@ -18,3 +18,7 @@ npm start
 ```
 
 This will start the development server on `http://localhost:4200/`.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
