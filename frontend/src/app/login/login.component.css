@@ -1,0 +1,72 @@
+.auth-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 450px;
+  overflow: hidden;
+  margin: 40px auto;
+  padding-bottom: 10px;
+}
+
+.auth-header {
+  text-align: center;
+  padding: 30px 30px 10px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.auth-header h1 {
+  color: #333;
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.auth-form {
+  padding: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px 40px 10px 10px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.input-container i {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #888;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #4d148c, #6a1b9a);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.btn.google {
+  background: #db4437;
+}
+
+.auth-footer {
+  text-align: center;
+  padding-bottom: 20px;
+}
