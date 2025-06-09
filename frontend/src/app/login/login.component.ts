@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,8 @@ export class LoginComponent {
   password = '';
   totpCode = '';
 
+  constructor(private auth: AuthService) {}
+
   togglePassword(): void {
     this.showPassword = !this.showPassword;
   }
@@ -23,8 +26,14 @@ export class LoginComponent {
       alert("Veuillez entrer votre code d'authentification à deux facteurs");
       return;
     }
-    console.log({ email: this.email, password: this.password, totpCode: this.totpCode });
-    alert('Connexion réussie !');
+    this.auth.login({
+      email: this.email,
+      password: this.password,
+      totpCode: this.totpCode || undefined
+    }).subscribe({
+      next: () => alert('Connexion réussie !'),
+      error: () => alert('Erreur lors de la connexion')
+    });
   }
 
   loginWithGoogle(): void {
