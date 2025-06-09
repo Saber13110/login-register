@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -16,8 +17,10 @@ export class RegisterComponent {
     confirmPassword: '',
     firstName: '',
     lastName: '',
-    acceptTerms: false
+  acceptTerms: false
   };
+
+  constructor(private authService: AuthService) {}
 
   toggle(field: 'password' | 'confirmPassword'): void {
     if (field === 'password') {
@@ -44,8 +47,19 @@ export class RegisterComponent {
       alert("Vous devez accepter les conditions d'utilisation");
       return;
     }
-    console.log('Données d\'inscription:', this.formData);
-    alert('Compte créé avec succès !');
-    this.goToStep(1);
+    this.authService
+      .register({
+        email: this.formData.email,
+        password: this.formData.password,
+        firstName: this.formData.firstName,
+        lastName: this.formData.lastName
+      })
+      .subscribe({
+        next: () => {
+          alert('Compte créé avec succès !');
+          this.goToStep(1);
+        },
+        error: () => alert("Erreur lors de l'inscription")
+      });
   }
 }
