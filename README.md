@@ -9,7 +9,6 @@ All of the frontend code lives in the `frontend/` directory where two Angular co
 
 A backend can be implemented with FastAPI and PostgreSQL (not included in this repository).
 
-Legacy standalone HTML files (`login.html` and `register.html`) have been removed in favor of the Angular implementation.
 
 To run the Angular application locally:
 
